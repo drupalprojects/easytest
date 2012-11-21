@@ -1,9 +1,0 @@
-<?php
-
-
-/** 
- * Implements hook_easytest_pages_list()
- */
-function hook_easytest_pages_list(){
-  return array('node', 'user', 'mycustompage');
-}
