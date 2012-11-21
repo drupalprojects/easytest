@@ -1,8 +1,9 @@
 <?php
 
+
 /** 
- * Implements hook_easytest_pages()
+ * Implements hook_easytestpages()
  */
-function mysite_custom_easytest_pages(){
+function easytest_pages_easytestpages(){
   return array('node', 'user', 'mycustompage');
 }

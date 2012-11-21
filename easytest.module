@@ -1,0 +1,10 @@
+<?php
+
+
+/** 
+ * Implements hook_easytestpages()
+ */
+function easytest_easytestpages(){
+  return array('node', 'user', 'raaay');
+}
+ 
