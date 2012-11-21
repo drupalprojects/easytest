@@ -16,7 +16,10 @@ class EasyTestPagesTestCase extends DrupalWebTestCase {
    * Make sure the desired pages return a 200 response.
    */
   function testEasyTestPagesOk() {
+    // @TODO: this is not working!!  not sure why.
     $urls = module_invoke_all('easytest_pages_list');
+    $urls = array('node', 'user', 'testfail');
+
     foreach($urls as $page){
       $this->drupalGet($page);
       $this->assertResponse(200, "Make sure $page returns OK.");
