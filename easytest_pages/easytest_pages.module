@@ -2,8 +2,8 @@
 
 
 /** 
- * Implements hook_easytestpages()
+ * Implements hook_easytest_pages_list()
  */
-function easytest_pages_easytestpages(){
+function hook_easytest_pages_list(){
   return array('node', 'user', 'mycustompage');
 }

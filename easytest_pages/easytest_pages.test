@@ -2,51 +2,24 @@
 class EasyTestPagesTestCase extends DrupalWebTestCase {
   public static function getInfo() {
     return array(
-      'name' => 'Easytest Page handling',
-      'description' => "Test the handling of requests containing 'index.php'.",
-      'group' => 'A simple Example',
+      'name' => 'Easytest Page Status',
+      'description' => "Ensures a certain list of pages returns 200 (HTTP OK) codes.",
+      'group' => 'EasyTest',
     );
   }
 
-  protected $privileged_user; 
   function setUp() {
-    // Enable any modules required for the test. This should be an array of module names.
-  parent::setUp(array('easytest'));
-
-    // Create and log in our privileged user.
-    $this->privileged_user = $this->drupalCreateUser(
-      //array('create simpletest_example content','extra special edit any simpletest_example',)
-    );
-    $this->drupalLogin($this->privileged_user);
-
-    //$account = $this->drupalCreateUser(array('access content'));
-    //$this->drupalLogin($account);
-    //global $user;
-    //$user = user_load($account->uid);
-    //$this->assertFalse(user_access('access content'));
+    parent::setUp();
   }
-
-
 
   /**
-   * Test pages handling.
-       */
-  public  function testEasyTestPagesOk() {
-    $urls = array();
-    $urls = module_invoke_all("easytestpages");
-
-    $base_url = $GLOBALS['base_url'];
-    
-    $this->drupalGet($base_url, array('external' => TRUE));
-    $this->assertResponse(200, t("Make sure the baseurl: $base_url returns a valid page."));
-
-
-    //$this->drupalGet($index_php, array('external' => TRUE, 'query' => array('q' => 'user')));
-    //$this->assertResponse(200, t('Make sure index.php?q=user returns a valid page.'));
-
-      foreach($urls as $page){
-        $this->drupalGet($base_url . '/'.$page, array('external' => TRUE));
-        $this->assertResponse(200, t("Make sure $base_url/$page returns a valid page."));
-      }
+   * Make sure the desired pages return a 200 response.
+   */
+  function testEasyTestPagesOk() {
+    $urls = module_invoke_all('easytest_pages_list');
+    foreach($urls as $page){
+      $this->drupalGet($page);
+      $this->assertResponse(200, "Make sure $page returns OK.");
+    }
   }
 }
