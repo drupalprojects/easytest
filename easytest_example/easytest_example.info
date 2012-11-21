@@ -2,4 +2,3 @@ name = EasyTest Example
 description = Easy testing with simple test.
 core = 7.x
 package = EasyTest
-hidden = TRUE
