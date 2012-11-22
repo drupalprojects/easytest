@@ -22,7 +22,7 @@ class EasyTestPagesTestCase extends DrupalWebTestCase {
     $urls = module_invoke_all('easytest_pages_list');
     foreach($urls as $page){
       $this->drupalGet($page);
-      $this->assertResponse(200, "Make sure $page returns OK.";
+      $this->assertResponse(200, "Make sure $page returns OK.");
     }
   }
 }
