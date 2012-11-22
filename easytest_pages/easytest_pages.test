@@ -1,15 +1,18 @@
 <?php
 class EasyTestPagesTestCase extends DrupalWebTestCase {
+  protected $modules;
+  
   public static function getInfo() {
-    return array(
+      return array(
       'name' => 'Easytest Page Status',
       'description' => "Ensures a certain list of pages returns 200 (HTTP OK) codes.",
       'group' => 'EasyTest',
     );
   }
-
+  
   function setUp() {
-    parent::setUp();
+    $this->modules = variable_get('implements_easytest_pages_list');
+    parent::setUp($this->modules);
   }
 
   /**
@@ -17,13 +20,9 @@ class EasyTestPagesTestCase extends DrupalWebTestCase {
    */
   function testEasyTestPagesOk() {
     $urls = module_invoke_all('easytest_pages_list');
-
-    // @TODO: the module invoke is not working!!  not sure why.
-    $urls = array('node', 'user', 'testfail');
-
     foreach($urls as $page){
       $this->drupalGet($page);
-      $this->assertResponse(200, "Make sure $page returns OK.");
+      $this->assertResponse(200, "Make sure $page returns OK.";
     }
   }
 }

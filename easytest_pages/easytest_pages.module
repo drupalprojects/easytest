@@ -1,0 +1,6 @@
+<?php
+/**
+ * Stores a list of all the currently enabled modules that implement 
+ * hook_easytest_pages_list 
+ */
+variable_set('implements_easytest_pages_list',module_implements('easytest_pages_list'));
