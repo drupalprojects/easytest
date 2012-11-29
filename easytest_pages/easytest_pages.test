@@ -1,6 +1,7 @@
 <?php
-class EasyTestPagesTestCase extends DrupalWebTestCase {
+class EasyTestPagesTestCase extends SimpleTestCloneTestCase {
   protected $modules;
+  protected $public_files_directory;
   
   public static function getInfo() {
       return array(
@@ -9,11 +10,6 @@ class EasyTestPagesTestCase extends DrupalWebTestCase {
       'group' => 'EasyTest',
     );
   }
-  
-  function setUp() {
-    $this->modules = variable_get('implements_easytest_pages_list');
-    parent::setUp($this->modules);
-  }
 
   /**
    * Make sure the desired pages return a 200 response.
@@ -21,8 +17,9 @@ class EasyTestPagesTestCase extends DrupalWebTestCase {
   function testEasyTestPagesOk() {
     $urls = module_invoke_all('easytest_pages_list');
     foreach($urls as $page){
+      $url = url($page, array('absolute' => TRUE));
       $this->drupalGet($page);
-      $this->assertResponse(200, "Make sure $page returns OK.");
+      $this->assertResponse(200, "Make sure $url returns 200/OK.");
     }
   }
 }

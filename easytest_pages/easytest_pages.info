@@ -3,6 +3,7 @@ description = This module will test a list of pages to make sure there are no er
 core = 7.x
 package = simpletest
 dependencies[] = simpletest
+dependencies[] = simpletest_clone
 files[] = easytest_pages.test
 
 ;configure = admin/config/content/example
